@@ -1,17 +1,13 @@
 ---
 - name: 'Clone bats'
   git:
-    repo: https://github.com/katello/forklift.git
+    repo: https://github.com/stbenjam/katello-deploy.git
     dest: /root/forklift
 
 - name: 'Install bats'
   shell: /root/forklift/bats/bootstrap.sh
-  args:
-    chdir: /
 
 - name: 'Run bats'
   shell: /usr/local/bin/katello-bats content capsule
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
-  args:
-    chdir: /
