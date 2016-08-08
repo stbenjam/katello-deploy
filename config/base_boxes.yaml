@@ -7,6 +7,8 @@ shells:
     shell: '/vagrant/shells/runcible.sh'
   katello_p4_shell: &katello_p4_shell
     shell: '/vagrant/shells/katello_p4_repos.sh; foreman-installer -v --scenario katello --foreman-admin-password=changeme'
+  katello_p3_shell: &katello_p3_shell
+    shell: '/vagrant/shells/katello_p3.sh; foreman-installer -v --scenario katello --foreman-admin-password=changeme'
   capsule_p4_shell: &capsule_p4_shell
     shell: '/vagrant/shells/katello_p4_repos.sh'
 
@@ -80,6 +82,10 @@ boxes:
     box: centos7
     <<: *runcible_shell
     privileged: false
+
+  centos7-katello-p3:
+    box: centos7
+    <<: *katello_p3_shell
 
   centos7-katello-p4:
     box: centos7
