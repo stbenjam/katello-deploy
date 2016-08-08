@@ -25,15 +25,7 @@ service httpd restart
 
 # patches needed:
 cd /;
-curl http://paste.fedoraproject.org/397071/35937146/raw/ | patch -p0 # hack passenger module issue
 curl http://paste.fedoraproject.org/397340/46980677/raw/ | patch -p0 # hack env dir override
-
-
-# Expose server type https://github.com/Katello/puppet-capsule/pull/90
-cd /usr/share/katello-installer-base/modules/capsule
-wget https://github.com/Katello/puppet-capsule/pull/90.patch
-git apply 90.patch
-
 
 # Run installer again
 foreman-installer -v \
