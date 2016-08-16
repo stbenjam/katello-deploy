@@ -14,8 +14,7 @@ yum -y localinstall https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarc
 yum -y localinstall http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install foreman-release-scl
 yum -y install katello
-yum -y install puppet-agent #this upgrades puppet
-
+yum -y install puppet-agent-1.5.3 puppetserver-2.4.0 # install puppet 4 - hardcoded versions because of https://tickets.puppetlabs.com/browse/PUP-6608
 
 # XXX: please fix this second
 setenforce 0  # uggggh! stopdisablingselinux.com :-P
