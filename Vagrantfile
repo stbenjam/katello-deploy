@@ -40,7 +40,7 @@ module Forklift
         network['options'] = network['options'].inject({}){ |memo,(k,v)| memo.update(k.to_sym => v) }
       end
 
-      if box.key?('shell') && !box['shell'].nil? 
+      if box.key?('shell') && !box['shell'].nil?
         machine.vm.provision :shell do |shell|
           shell.inline = box.fetch('shell')
           shell.privileged = false if box.key?('privileged')
@@ -64,11 +64,15 @@ module Forklift
           @ansible_groups["server-#{box.fetch('name')}"] = box['ansible']['server']
         end
 
+
+        @host_vars = {box['name'] => box['ansible']['variables']}
+
         if (playbooks = box['ansible']['playbook'])
 
           if playbooks.is_a?(String)
             machine.vm.provision 'main', type: 'ansible' do |ansible|
               ansible.playbook = playbooks
+              ansible.host_vars = @host_vars if @host_vars && Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8.0')
 
               ansible.groups = @ansible_groups
             end
@@ -78,6 +82,7 @@ module Forklift
             playbooks.each_with_index do |playbook, index|
               machine.vm.provision "main#{index}", type: 'ansible' do |ansible|
                 ansible.playbook = playbook
+                ansible.host_vars = @host_vars if @host_vars && Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8.0')
 
                 ansible.groups = @ansible_groups
               end

@@ -4,10 +4,17 @@
     name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ release }}.noarch.rpm
     state: present
 
-- name: 'Setup Puppetlabs Repository'
+- name: 'Setup Puppet 3 Repository'
   yum:
     name: http://yum.puppetlabs.com/puppetlabs-release-el-{{ release }}.noarch.rpm
     state: present
+  when: foreman_puppet_version is undefined or foreman_puppet_version == 3
+
+- name: 'Setup Puppet 4 Repository'
+  yum:
+    name: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-{{ release }}.noarch.rpm
+    state: present
+  when: foreman_puppet_version is defined and foreman_puppet_version == 4
 
 - name: 'Setup Foreman Repository'
   yum:
