@@ -16,6 +16,16 @@
     name: katello
     state: latest
 
+# FIXME: Remove when parser cache is available in RPM package
+- name: "Install puppetlabs-strings for puppet 4"
+  command: "/opt/puppetlabs/bin/puppet module install puppetlabs-strings"
+  when: foreman_puppet_version is defined and foreman_puppet_version == 4
+
+# FIXME: Remove when parser cache is available in RPM package
+- name: "Install yard gem for puppet 4"
+  command: "/opt/puppetlabs/puppet/bin/gem install yard"
+  when: foreman_puppet_version is defined and foreman_puppet_version == 4
+
 - name: 'Run installer'
   command: "{{ katello_installer_command }}"
   when: not katello_skip_installer

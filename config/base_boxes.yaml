@@ -5,12 +5,6 @@ shells:
     shell: '/vagrant/bats/bootstrap_vagrant.sh'
   runcible_shell: &runcible_shell
     shell: '/vagrant/shells/runcible.sh'
-  katello_p4_shell: &katello_p4_shell
-    shell: '/vagrant/shells/katello_p4_repos.sh; foreman-installer -v --scenario katello --foreman-admin-password=changeme'
-  katello_p3_shell: &katello_p3_shell
-    shell: '/vagrant/shells/katello_p3.sh; foreman-installer -v --scenario katello --foreman-admin-password=changeme'
-  capsule_p4_shell: &capsule_p4_shell
-    shell: '/vagrant/shells/katello_p4_repos.sh'
 
 boxes:
   centos6:
@@ -49,6 +43,12 @@ boxes:
     <<: *install_shell
     options: --scenario=katello
 
+  centos6-katello-nightly-p4:
+    box: centos6
+    ansible:
+      playbook: 'playbooks/katello_nightly.yml'
+      group: 'server'
+
   centos6-capsule-nightly:
     box: centos6
     ansible:
@@ -63,12 +63,29 @@ boxes:
     ansible:
       group: 'server'
 
+  centos7-katello-nightly-p4:
+    box: centos7
+    ansible:
+      playbook: 'playbooks/katello_nightly.yml'
+      group: 'server'
+      variables:
+        foreman_puppet_version: 4
+
   centos7-capsule-nightly:
     box: centos7
     ansible:
       playbook: 'playbooks/capsule.yml'
       group: 'capsule'
       server: 'centos7-katello-nightly'
+
+  centos7-capsule-nightly-p4:
+    box: centos7
+    ansible:
+      playbook: 'playbooks/capsule.yml'
+      group: 'capsule'
+      server: 'centos7-katello-nightly-p4'
+      variables:
+        foreman_puppet_version: 4
 
   centos6-bats:
     box: centos6
@@ -82,18 +99,6 @@ boxes:
     box: centos7
     <<: *runcible_shell
     privileged: false
-
-  centos7-katello-p3:
-    box: centos7
-    <<: *katello_p3_shell
-
-  centos7-katello-p4:
-    box: centos7
-    <<: *katello_p4_shell
-
-  centos7-capsule-p4:
-    box: centos7
-    <<: *capsule_p4_shell
 
   pipeline-katello-centos7:
     box: centos7

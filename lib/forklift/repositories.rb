@@ -82,9 +82,9 @@ module Forklift
 
     def bootstrap_puppet(os_version)
       if @puppet_four
-        local_install("http://yum.puppetlabs.com/puppetlabs-release-el-#{os_version}.noarch.rpm")
-      else
         local_install("https://yum.puppetlabs.com/puppetlabs-release-pc1-el-#{os_version}.noarch.rpm")
+      else
+        local_install("http://yum.puppetlabs.com/puppetlabs-release-el-#{os_version}.noarch.rpm")
       end
     end
 
