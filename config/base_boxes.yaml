@@ -43,7 +43,7 @@ boxes:
     <<: *install_shell
     options: --scenario=katello
 
-  centos6-katello-nightly-p4:
+  centos6-katello-p4-nightly:
     box: centos6
     ansible:
       playbook: 'playbooks/katello_nightly.yml'
@@ -56,6 +56,15 @@ boxes:
       group: 'capsule'
       server: 'centos6-katello-nightly'
 
+  centos6-capsule-p4-nightly:
+    box: centos6
+    ansible:
+      playbook: 'playbooks/capsule.yml'
+      group: 'capsule'
+      server: 'centos6-katello-p4-nightly'
+      variables:
+        common_puppet_version: 4
+
   centos7-katello-nightly:
     box: centos7
     <<: *install_shell
@@ -63,7 +72,7 @@ boxes:
     ansible:
       group: 'server'
 
-  centos7-katello-nightly-p4:
+  centos7-katello-p4-nightly:
     box: centos7
     ansible:
       playbook: 'playbooks/katello_nightly.yml'
@@ -78,12 +87,12 @@ boxes:
       group: 'capsule'
       server: 'centos7-katello-nightly'
 
-  centos7-capsule-nightly-p4:
+  centos7-capsule-p4-nightly:
     box: centos7
     ansible:
       playbook: 'playbooks/capsule.yml'
       group: 'capsule'
-      server: 'centos7-katello-nightly-p4'
+      server: 'centos7-katello-p4-nightly'
       variables:
         common_puppet_version: 4
 
