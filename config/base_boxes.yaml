@@ -69,7 +69,7 @@ boxes:
       playbook: 'playbooks/katello_nightly.yml'
       group: 'server'
       variables:
-        foreman_puppet_version: 4
+        common_puppet_version: 4
 
   centos7-capsule-nightly:
     box: centos7
@@ -85,7 +85,7 @@ boxes:
       group: 'capsule'
       server: 'centos7-katello-nightly-p4'
       variables:
-        foreman_puppet_version: 4
+        common_puppet_version: 4
 
   centos6-bats:
     box: centos6

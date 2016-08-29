@@ -14,6 +14,7 @@
       --enable-foreman-proxy-plugin-remote-execution-ssh
   roles:
     - etc_hosts
+    - common
     - foreman_repositories
     - katello_repositories
     - katello
