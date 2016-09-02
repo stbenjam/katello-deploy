@@ -37,6 +37,10 @@ OptionParser.new do |opts|
     options[:skip_installer] = true
   end
 
+  opts.on("--puppet-four", "Use puppet 4") do |devel|
+    options[:puppet_four] = true
+  end
+
   opts.on("--deployment-dir [DIRECTORY]", "Set a custom path for installing to (defaults to /home/USERNAME)") do |dir|
     options[:deployment_dir] = dir
   end

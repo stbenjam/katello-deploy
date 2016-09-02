@@ -1,6 +1,8 @@
 - hosts: all
+  become: true
   roles:
     - etc_hosts
+    - common
     - foreman_repositories
     - katello_repositories
     - katello
