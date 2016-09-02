@@ -55,16 +55,6 @@
     name: foreman-installer-katello
   when: custom_install == False
 
-# FIXME: Remove when parser cache is available in RPM package
-- name: "Install puppetlabs-strings for puppet 4"
-  command: "/opt/puppetlabs/bin/puppet module install puppetlabs-strings"
-  when: common_puppet_version is defined and common_puppet_version == 4
-
-# FIXME: Remove when parser cache is available in RPM package
-- name: "Install yard gem for puppet 4"
-  command: "/opt/puppetlabs/puppet/bin/gem install yard"
-  when: common_puppet_version is defined and common_puppet_version == 4
-
 - name: 'Run Install'
   shell: >
     foreman-installer -v --scenario capsule
