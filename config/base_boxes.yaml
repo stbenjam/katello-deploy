@@ -48,6 +48,8 @@ boxes:
     ansible:
       playbook: 'playbooks/katello_nightly.yml'
       group: 'server'
+      variables:
+        common_puppet_version: 4
 
   centos6-capsule-nightly:
     box: centos6
