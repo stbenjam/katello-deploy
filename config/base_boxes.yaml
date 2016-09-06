@@ -46,10 +46,10 @@ boxes:
   centos6-katello-p4-nightly:
     box: centos6
     ansible:
-      playbook: 'playbooks/katello_nightly.yml'
+      playbook: 'playbooks/katello.yml'
       group: 'server'
       variables:
-        common_puppet_version: 4
+        puppet_repositories_version: 4
 
   centos6-capsule-nightly:
     box: centos6
@@ -65,7 +65,7 @@ boxes:
       group: 'capsule'
       server: 'centos6-katello-p4-nightly'
       variables:
-        common_puppet_version: 4
+        puppet_repositories_version: 4
 
   centos7-katello-nightly:
     box: centos7
@@ -77,10 +77,10 @@ boxes:
   centos7-katello-p4-nightly:
     box: centos7
     ansible:
-      playbook: 'playbooks/katello_nightly.yml'
+      playbook: 'playbooks/katello.yml'
       group: 'server'
       variables:
-        common_puppet_version: 4
+        puppet_repositories_version: 4
 
   centos7-capsule-nightly:
     box: centos7
@@ -96,7 +96,7 @@ boxes:
       group: 'capsule'
       server: 'centos7-katello-p4-nightly'
       variables:
-        common_puppet_version: 4
+        puppet_repositories_version: 4
 
   centos6-bats:
     box: centos6
