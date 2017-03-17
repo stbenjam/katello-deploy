@@ -18,8 +18,10 @@
   shell: >
       cd {{ (item.split("/")[0] == 'theforeman') | ternary("/usr/share/foreman-installer/modules", "/usr/share/katello-installer-base/modules") }} &&
       rm -rf {{ item.split("/")[1] }} &&
-      git clone https://github.com/{{ item.split("/")[0] }}/puppet-{{ item.split("/")[1] }} {{ item.split("/")[1] }} &&
+      git clone https://{{ foreman_installer_git_host }}/{{ item.split("/")[0] }}/puppet-{{ item.split("/")[1] }}{{ foreman_install_git_postfix }} {{ item.split("/")[1] }} &&
       cd {{ item.split("/")[1] }} &&
       git fetch origin pull/{{ item.split("/")[2] }}/head:pr &&
       git merge pr
+  environment:
+      GIT_SSL_NO_VERIFY: {{ foreman_installer_git_ssl_no_verify }}
   with_items: "{{ foreman_installer_module_prs.split(',') }}"

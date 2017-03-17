@@ -9,6 +9,12 @@ foreman_installer_upgrade: False
 # Comma-separated list of "organization/module/pr_number", e.g. "katello/foreman_proxy_content/37,katello/certs/34"
 foreman_installer_module_prs: ""
 
+# Git settings for module PR's
+foreman_installer_git_host: "github.com"
+foreman_installer_git_postfix: ".git"
+foreman_installer_git_no_ssl_verify: "false"
+
+
 # There are two options, so a user can supply their own, and a playbook can
 # specify theirs. For example, katello needs "--disable-system-checks" so we
 # put it in internal_use_only. It's an array. foreman_installer_options
