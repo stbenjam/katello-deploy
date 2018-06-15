@@ -3,6 +3,5 @@
   vars:
     libvirt_tftp: true
   roles:
-    - katello
     - libvirt
     - katello_provisioning

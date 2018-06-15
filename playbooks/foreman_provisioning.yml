@@ -3,6 +3,5 @@
   vars:
     libvirt_tftp: true
   roles:
-    - foreman
     - libvirt
     - foreman_provisioning
